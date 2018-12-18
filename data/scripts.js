@@ -1,3 +1,10 @@
+/**************************
+ * IMP - ESP8266          *
+ * Tomas Willaschek       *
+ * xwilla00               *
+ * original - 18-12-2018  *
+ **************************/
+
 function process_time(){
 	var time = parseInt(document.getElementById('time').innerHTML);
 	document.getElementById('time').innerHTML = time + 1;

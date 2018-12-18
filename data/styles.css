@@ -1,3 +1,9 @@
+/**************************
+ * IMP - ESP8266          *
+ * Tomas Willaschek       *
+ * xwilla00               *
+ * original - 18-12-2018  *
+ **************************/
 body{max-width: 1080px;}
 .nav{background-color: #464646; position: fixed; width: 100%; top: 0px; left: 0px; padding-left: 15px; height: 6em;}
 h1{color: #EDEDED; height: 25px; margin-top: 0.2em; margin-bottom: 0.2em; font-size: 4em; text-align: center;}
