@@ -6,6 +6,7 @@
  **************************/
 
 function process_time(){
+	// handle function to process time leaded from server
 	var time = parseInt(document.getElementById('time').innerHTML);
 	document.getElementById('time').innerHTML = time + 1;
 	document.getElementById('h').innerHTML = ("0" + parseInt(time / 3600)).slice(-2);
@@ -14,6 +15,7 @@ function process_time(){
 }
 
 function load_temp() {
+	// sends request to server to get temperature
 	document.getElementById("temp").innerHTML = 'Loading...';
 	var xmlHttp = createXmlHttpRequestObject();
 	xmlHttp.addEventListener("load", fill_temp);
@@ -22,6 +24,7 @@ function load_temp() {
 }
 
 function load_table() {
+	// sends request to server to get table data
 	var xmlHttp = createXmlHttpRequestObject();
 	xmlHttp.addEventListener("load", fill_table);
 	xmlHttp.open("GET", 'http://192.168.4.1/data', true); 
@@ -29,6 +32,7 @@ function load_table() {
 }
 
 function load_time() {
+	// sends request to server to get system uptime
 	var xmlHttp = createXmlHttpRequestObject();
 	xmlHttp.addEventListener("load", function(){document.getElementById('time').innerHTML = this.responseText;});
 	xmlHttp.open("GET", 'http://192.168.4.1/get_uptime', true); 
@@ -36,6 +40,7 @@ function load_time() {
 }
 
 function fill_table(){
+	// fill data into table, handler of load_table()
 	var data = this.responseText.split(';').slice(0,-1);
 	var res = "";
 	var avg = 0.0;
@@ -49,6 +54,7 @@ function fill_table(){
 }
 
 function fill_temp() {
+	// fill temperature into html, load_temp() handler
 	document.getElementById('sun').className = 'hidden';
 	document.getElementById('ice').className = 'hidden';
 	document.getElementById('cloud').className = 'hidden';
@@ -62,7 +68,8 @@ function fill_temp() {
 }
 
 function createXmlHttpRequestObject() {
-  var xmlhttp;
+	// create ajax connector 
+  	var xmlhttp;
 	try {
 		xmlHttp = new XMLHttpRequest();
 	} catch (e) { 

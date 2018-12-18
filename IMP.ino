@@ -32,33 +32,51 @@ int iteration = 0;
 int uptime = 0; // system uptime in seconds
 
 void refresh_img(){
+  /**
+   * Source location for image to html page
+   */
   File file = SPIFFS.open("/refresh.png", "r");
   server.streamFile(file, "image/png");
   file.close();
 }
 
 void styles(){
+  /**
+   * Source location for stylesheet file
+   */
   File file = SPIFFS.open("/styles.css", "r");
   server.streamFile(file, "text/css");
   file.close();
 }
 
 void scripts(){
+  /**
+   * Source location for javascript file
+   */
   File file = SPIFFS.open("/scripts.js", "r");
   server.streamFile(file, "text/js");
   file.close();
 }
 
 void get_temp(){
+  /**
+   * Gets actual temperature and sends it to html page
+   */
   sensors.requestTemperatures();
   server.send(200, "text/plain", String(sensors.getTempCByIndex(0)));
 }
 
 void get_uptime(){
+  /**
+   * Get actual system uptime and sends it to html page
+   */
   server.send(200, "text/plain", String(uptime));
 }
 
 void data(){
+  /**
+   * Loads exactly 24 temperature records from flash and sends it to html page
+   */
   String res = "";
   int j = 0;
   for(int i = address; j < 24;){
@@ -77,6 +95,9 @@ void data(){
 Go to http://192.168.4.1
 */
 void handleRoot() {
+  /**
+   * Sends index.html page to html page
+   */
   Serial.print("Handling HTML request...");
   File file = SPIFFS.open("/index.html", "r");
   server.streamFile(file, "text/html");
@@ -87,17 +108,22 @@ void handleRoot() {
 void setup() {
   delay(1000);
   Serial.begin(115200);
+  // FS init
   SPIFFS.begin();
   Serial.println();
+  // set wifi with SSID
   WiFi.softAP(ssid);
   IPAddress myIP = WiFi.softAPIP();
   Serial.print("AP IP: ");
   Serial.println(myIP);
+  // Temperature sensor init
   sensors.begin();
   EEPROM.begin(512);
+  // Fill used eeprom with zeros
   for(int i = 0; i <= 101; ++i)
     EEPROM.write(i, reader);
   save_temp();
+  // configure web endpoints
   server.on("/", handleRoot);
   server.on("/styles.css", styles);
   server.on("/scripts.js", scripts);
@@ -105,6 +131,7 @@ void setup() {
   server.on("/get_temp", get_temp);
   server.on("/data", data);
   server.on("/get_uptime", get_uptime);
+  // init AP
   server.begin();
 }
 
@@ -145,5 +172,8 @@ void save_temp(){
 }
 
 void create_second(){
+  /**
+   * Increment system uptime
+   */
   ++uptime;
 }
