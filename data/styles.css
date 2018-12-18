@@ -1,0 +1,23 @@
+body{max-width: 1080px;}
+.nav{background-color: #464646; position: fixed; width: 100%; top: 0px; left: 0px; padding-left: 15px; height: 6em;}
+h1{color: #EDEDED; height: 25px; margin-top: 0.2em; margin-bottom: 0.2em; font-size: 4em; text-align: center;}
+.content{padding-top: 6em; text-align: center; width: 90%; margin: 0 auto; position: absolute; padding-left: 4.3%;}
+.content-box{border: 1px solid silver; border-radius: 10px; box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important; margin: 30px 0px 30px 0px; min-height: 50px;}
+.data{font-size: 1.9em; padding: 15px 15px 15px 15px; display: block;}
+.footer{position: fixed; background-color: #f5f5f5; width: 100%; height: 2em; border-top: 1px solid grey; bottom: 10px; font-size: 1.4em; left: 0px; margin-bottom: -10px;}
+.r{float: right;}
+.l{float: left;}
+.reload{position: fixed; bottom: 80px; right: 20px; font-size: 3em; font-weight: bold; border-radius: 15px; border: 1px solid grey; width: 80px; height: 80px; cursor: pointer;}
+.up{margin: -10px 0px 0px 4px; position: absolute;}
+.down{margin: -36px 0px 0px 4px; position: absolute;}
+.pad{padding: 10px 15px 0px 15px;}
+.bold{font-weight: bolder;}
+.hidden{display: none;}
+img{width: 60px; height: 60px; padding: 10px 10px;}
+table > thead >th {background-color: #EEE;}
+th {border-bottom: 2px solid grey !important; font-size: 1.2em; padding: 5px 10px 5px 10px}
+table {margin: 0 auto; border-collapse: collapse; margin-bottom: 20px;}
+td {border-top: 1px solid grey;}
+.a {background-color: #FCFCFC;}
+.b {background-color: #EFEFEF;}
+.content-table{border: 1px solid silver; border-radius: 10px; box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important; margin: 30px 0px 30px 0px; min-height: 500px; width: 300px; margin: 0 auto;}
