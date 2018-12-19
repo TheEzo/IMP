@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IMP project</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<link rel="stylesheet" type="" href="styles.min.css">
+	<div class="nav">
+		<h1>IMP ESP8266 project</h1>
+	</div>
+	<div class="content">
+		<div class="content-box">
+			<span class="data pad">Current temperature: 
+				<span class="bold" id="temp">Loading...</span>&deg;C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+				<span id="ice" class="hidden">&#10052;</span>
+				<span id="sun" class="hidden">&#9728;</span>
+				<span id="cloud" class="hidden">&#9729;</span>
+			</span>
+		</div>
+		<div class="content-box"><span class="data pad">Last ten minutes average temperature: 
+			<span class="bold" id="avg">Loading...</span>&deg;C</span>
+		</div>
+		<div class="content-table">
+			<span class="data pad">Temperature history</span>
+			<table>
+				<thead>
+					<tr>
+						<th>Minutes ago</th>
+						<th>Temperature</th>
+					</tr>
+				</thead>
+				<tbody id="table-body">
+					<tr class="a"><td colspan="2" rowspan="2">Loading...</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<span id="time" class="hidden">0</span>
+	<div class="footer"><span class="l pad">
+		System uptime <span id="h">00</span>:<span id="m">00</span>:<span id="s">00</span></span>
+		<span class="r pad">&copy; 2018 Tomas Willaschek (xwilla00)</span>
+	</div>
+	<div onclick="load_temp();" class="reload">
+		<img src="refresh.png">
+	</div>
+
+	<script src="scripts.min.js"></script>
+	<script>
+		load_table();
+		load_temp();
+		load_time();
+		setInterval(process_time, 1000); 
+		setInterval(load_temp, 60000);
+		setInterval(load_table, 60000);
+	</script>
+
+</body>
+</html>

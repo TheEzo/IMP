@@ -44,7 +44,7 @@ void styles(){
   /**
    * Source location for stylesheet file
    */
-  File file = SPIFFS.open("/styles.css", "r");
+  File file = SPIFFS.open("/styles.min.css", "r");
   server.streamFile(file, "text/css");
   file.close();
 }
@@ -53,7 +53,7 @@ void scripts(){
   /**
    * Source location for javascript file
    */
-  File file = SPIFFS.open("/scripts.js", "r");
+  File file = SPIFFS.open("/scripts.min.js", "r");
   server.streamFile(file, "text/js");
   file.close();
 }
@@ -91,20 +91,18 @@ void data(){
   server.send(200, "text/plain", String(res));
 }
 
-/*
-Go to http://192.168.4.1
-*/
 void handleRoot() {
   /**
    * Sends index.html page to html page
    */
-  Serial.print("Handling HTML request...");
+  Serial.print("Handling request...");
   File file = SPIFFS.open("/index.html", "r");
   server.streamFile(file, "text/html");
   file.close();
   Serial.println("DONE");
 }
 
+/** 192.168.4.1 */
 void setup() {
   delay(1000);
   Serial.begin(115200);
@@ -135,20 +133,19 @@ void setup() {
   server.begin();
 }
 
-void loop(void)
-{ 
+void loop(void){ 
   /**
    * Set AP handler
    * Trigger saving temp +- each minute
    */
-  server.handleClient();
   delay(10);
+  server.handleClient();
   ++iteration;
-  if(iteration == 5900){ // * 60 to make it one hour -- one minute is just for demo 
+  if(iteration == 5990){ // * 60 to make it one hour -- one minute is just for demo 
     save_temp();
     iteration = 0; 
   }
-  if(iteration % 100 == 0) create_second();
+  if(iteration % 100 == 0) ++uptime; // create second
 }
 
 void save_temp(){
@@ -169,11 +166,4 @@ void save_temp(){
   else val = first;
   EEPROM.write(address, val);
   EEPROM.write(--address, (int8_t)second);
-}
-
-void create_second(){
-  /**
-   * Increment system uptime
-   */
-  ++uptime;
 }
